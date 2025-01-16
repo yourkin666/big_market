@@ -1,0 +1,12 @@
+25-01-16.23:03:50.068 [main            ] INFO  Application            - Starting Application using Java 1.8.0_422 on Y9000P with PID 14728 (C:\Users\25180\Desktop\big-market\big-market-app\target\classes started by 25180 in C:\Users\25180\Desktop\big-market)
+25-01-16.23:03:50.072 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-01-16.23:03:50.880 [main            ] WARN  ClassPathMapperScanner - No MyBatis mapper was found in '[cn.yourkin666]' package. Please check your configuration.
+25-01-16.23:03:51.337 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-01-16.23:03:51.348 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-01-16.23:03:51.349 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-01-16.23:03:51.349 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-01-16.23:03:51.496 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-01-16.23:03:51.497 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1375 ms
+25-01-16.23:03:52.090 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-01-16.23:03:52.110 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-01-16.23:03:52.190 [main            ] INFO  Application            - Started Application in 2.682 seconds (JVM running for 4.079)
