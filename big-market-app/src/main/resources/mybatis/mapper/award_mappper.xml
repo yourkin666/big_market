@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yourkin666.infrastructure.persistent.dao.IAwardDao">
+
+    <resultMap id="DataMap" type="cn.yourkin666.infrastructure.persistent.po.Award">
+        <id column="id" property="id"/>
+        <id column="award_id" property="awardId"/>
+        <id column="award_key" property="awardKey"/>
+        <id column="award_config" property="awardConfig"/>
+        <id column="award_desc" property="awardDesc"/>
+        <id column="create_time" property="createTime"/>
+        <id column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="queryAwardList" resultMap="DataMap">
+        select award_id, award_key, award_config, award_desc
+        from big_market.award
+        limit 10
+    </select>
+
+</mapper>

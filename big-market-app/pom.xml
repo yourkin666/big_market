@@ -88,6 +88,10 @@
             <groupId>cn.yourkin666</groupId>
             <artifactId>big-market-infrastructure</artifactId>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
