@@ -6,13 +6,15 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * @author yourkin666
- * @date 2025/01/16/23:54
+ * @author Fuzhengwei bugstack.cn @小傅哥
  * @description 抽奖策略奖品明细配置 - 概率、规则 DAO
+ * @create 2023-12-16 13:24
  */
 @Mapper
 public interface IStrategyAwardDao {
+
     List<StrategyAward> queryStrategyAwardList();
 
     List<StrategyAward> queryStrategyAwardListByStrategyId(Long strategyId);
+
 }
