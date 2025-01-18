@@ -78,6 +78,10 @@
             <artifactId>converter-gson</artifactId>
             <version>2.9.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+        </dependency>
 
         <!-- 工程模块；启动依赖 trigger->domain, infrastructure-->
         <dependency>
@@ -89,8 +93,9 @@
             <artifactId>big-market-infrastructure</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.26.0</version>
         </dependency>
     </dependencies>
 
@@ -131,7 +136,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.bugstack.Application</mainClass>
+                    <mainClass>cn.yourkin666.Application</mainClass>
                     <layout>JAR</layout>
                 </configuration>
             </plugin>
