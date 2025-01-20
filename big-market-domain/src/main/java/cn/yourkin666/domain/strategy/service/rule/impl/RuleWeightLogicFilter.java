@@ -44,7 +44,8 @@ public class RuleWeightLogicFilter implements ILogicFilter<RuleActionEntity.Raff
         Long strategyId = ruleMatterEntity.getStrategyId();
         String ruleValue = repository.queryStrategyRuleValue(ruleMatterEntity.getStrategyId(), ruleMatterEntity.getAwardId(), ruleMatterEntity.getRuleModel());
 
-        // 1. 根据用户ID查询用户抽奖消耗的积分值，本章节我们先写死为固定的值。后续需要从数据库中查询。
+        // 1. 根据用户ID查询用户抽奖消耗的积分值，本章节我们先写死为固定的值。后续需要从数据库中查询
+
         Map<Long, String> analyticalValueGroup = getAnalyticalValue(ruleValue);
         if (null == analyticalValueGroup || analyticalValueGroup.isEmpty()) {
             return RuleActionEntity.<RuleActionEntity.RaffleBeforeEntity>builder()
@@ -57,7 +58,7 @@ public class RuleWeightLogicFilter implements ILogicFilter<RuleActionEntity.Raff
         List<Long> analyticalSortedKeys = new ArrayList<>(analyticalValueGroup.keySet());
         Collections.sort(analyticalSortedKeys);
 
-        // 3. 找出最小符合的值，也就是【4500 积分，能找到 4000:102,103,104,105】、【5000 积分，能找到 5000:102,103,104,105,106,107】
+        // 3. 找出最小符合的值，也就是【4500 积分，能找到 4000:102,103,104,105】、【5001 积分，能找到 5000:102,103,104,105,106,107】
         Long nextValue = analyticalSortedKeys.stream()
                 .filter(key -> userScore >= key)
                 .findFirst()
@@ -81,6 +82,9 @@ public class RuleWeightLogicFilter implements ILogicFilter<RuleActionEntity.Raff
                 .build();
     }
 
+
+    //ruleValue：4000:102,103,104,105 5000:102,103,104,105,106,107 6000:102,103,104,105,106,107,108,109
+    //将rule拆分成如同{key：4000，value：102,103,104,105}的map
     private Map<Long, String> getAnalyticalValue(String ruleValue) {
         String[] ruleValueGroups = ruleValue.split(Constants.SPACE);
         Map<Long, String> ruleValueMap = new HashMap<>();

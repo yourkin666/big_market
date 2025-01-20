@@ -18,6 +18,7 @@ public class RuleActionEntity<T extends RuleActionEntity.RaffleEntity> {
     private String ruleModel;
     private T data;
 
+
     static public class RaffleEntity {
 
     }

@@ -31,13 +31,17 @@ public class RuleBackListLogicFilter implements ILogicFilter<RuleActionEntity.Ra
 
         String userId = ruleMatterEntity.getUserId();
 
-        // 查询规则值配置
+        // 在strategy_rule表中查询rule_value值。查询条件包括strategy_id和rule_model，并且如果传入的awardId属性不为null，还会进一步根据award_id进行过滤
         String ruleValue = repository.queryStrategyRuleValue(ruleMatterEntity.getStrategyId(), ruleMatterEntity.getAwardId(), ruleMatterEntity.getRuleModel());
-        String[] splitRuleValue = ruleValue.split(Constants.COLON);
-        Integer awardId = Integer.parseInt(splitRuleValue[0]);
 
-        // 过滤其他规则
+        //如果ruleValue是"1001:user1,user2,user3"，分割后的数组splitRuleValue将会是["1001", "user1,user2,user3"]
+        String[] splitRuleValue = ruleValue.split(Constants.COLON);
+        Integer awardId = Integer.parseInt(splitRuleValue[0]);//取出splitRuleValue[0]也就是给黑名单用户的固定awardId
+
+        // 取出splitRuleValue[1]也就是给黑名单用户id
         String[] userBlackIds = splitRuleValue[1].split(Constants.SPLIT);
+
+        //一个个挨着确认该用户是否在黑名单内，在黑名单就给他接管流程了
         for (String userBlackId : userBlackIds) {
             if (userId.equals(userBlackId)) {
                 return RuleActionEntity.<RuleActionEntity.RaffleBeforeEntity>builder()
@@ -52,6 +56,7 @@ public class RuleBackListLogicFilter implements ILogicFilter<RuleActionEntity.Ra
             }
         }
 
+        //不在黑名单的情况：放行流程
         return RuleActionEntity.<RuleActionEntity.RaffleBeforeEntity>builder()
                 .code(RuleLogicCheckTypeVO.ALLOW.getCode())
                 .info(RuleLogicCheckTypeVO.ALLOW.getInfo())
