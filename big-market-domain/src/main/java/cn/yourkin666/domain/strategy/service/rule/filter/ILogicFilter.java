@@ -1,4 +1,4 @@
-package cn.yourkin666.domain.strategy.service.rule;
+package cn.yourkin666.domain.strategy.service.rule.filter;
 
 import cn.yourkin666.domain.strategy.model.entity.RuleActionEntity;
 import cn.yourkin666.domain.strategy.model.entity.RuleMatterEntity;
