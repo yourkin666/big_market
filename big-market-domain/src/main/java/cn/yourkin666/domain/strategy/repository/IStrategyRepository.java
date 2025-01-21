@@ -7,7 +7,6 @@ import cn.yourkin666.domain.strategy.model.valobj.RuleTreeVO;
 import cn.yourkin666.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import cn.yourkin666.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -78,8 +77,17 @@ public interface IStrategyRepository {
      * 更新奖品库存消耗
      *
      * @param strategyId 策略ID
-     * @param awardId 奖品ID
+     * @param awardId    奖品ID
      */
     void updateStrategyAwardStock(Long strategyId, Integer awardId);
+
+    /**
+     * 根据策略ID+奖品ID的唯一值组合，查询奖品信息
+     *
+     * @param strategyId 策略ID
+     * @param awardId    奖品ID
+     * @return 奖品信息
+     */
+    StrategyAwardEntity queryStrategyAwardEntity(Long strategyId, Integer awardId);
 
 }

@@ -1,10 +1,13 @@
 package cn.yourkin666.infrastructure.persistent.po;
+
 import lombok.Data;
+
 import java.util.Date;
+
 /**
- * @author yourkin666
- * @date 2025/01/16/23:48
+ * @author Fuzhengwei bugstack.cn @小傅哥
  * @description 奖品表
+ * @create 2023-12-16 13:21
  */
 @Data
 public class Award {
