@@ -24,7 +24,9 @@ public class StrategyEntity {
     private String ruleModels;
 
     public String[] ruleModels() {
-        if (StringUtils.isBlank(ruleModels)) return null;
+        if (StringUtils.isBlank(ruleModels)) {
+            return null;
+        }
         return ruleModels.split(Constants.SPLIT);
     }
 
