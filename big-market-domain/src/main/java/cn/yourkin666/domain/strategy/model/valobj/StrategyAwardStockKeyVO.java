@@ -1,4 +1,4 @@
-package cn.yourkin666.domain.strategy.model.entity;
+package cn.yourkin666.domain.strategy.model.valobj;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,18 +7,18 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Fuzhengwei bugstack.cn @小傅哥
- * @description 抽奖因子实体
- * @create 2024-01-06 09:20
+ * @description 策略奖品库存Key标识值对象
+ * @create 2024-02-09 11:24
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleFactorEntity {
+public class StrategyAwardStockKeyVO {
 
-    /** 用户ID */
-    private String userId;
-    /** 策略ID */
+    // 策略ID
     private Long strategyId;
+    // 奖品ID
+    private Integer awardId;
 
 }

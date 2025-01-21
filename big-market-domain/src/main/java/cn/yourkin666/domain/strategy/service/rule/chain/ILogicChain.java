@@ -14,7 +14,7 @@ public interface ILogicChain extends ILogicChainArmory{
      *
      * @param userId     用户ID
      * @param strategyId 策略ID
-     * @return 奖品ID
+     * @return 奖品对象
      */
     DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId);
 
