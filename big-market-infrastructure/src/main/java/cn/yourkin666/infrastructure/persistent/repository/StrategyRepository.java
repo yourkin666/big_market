@@ -168,13 +168,19 @@ public class StrategyRepository implements IStrategyRepository {
         if (null != ruleTreeVOCache) return ruleTreeVOCache;
 
         // 从数据库获取
+        // 从rule_tree表查tree_id, tree_name, tree_desc, tree_node_rule_key
         RuleTree ruleTree = ruleTreeDao.queryRuleTreeByTreeId(treeId);
+        //rule_tree_node 的数据库表中选择 tree_id, rule_key, rule_desc, rule_value
         List<RuleTreeNode> ruleTreeNodes = ruleTreeNodeDao.queryRuleTreeNodeListByTreeId(treeId);
+        //从数据库表 rule_tree_node_line 中查询tree_id、rule_node_from、rule_node_to、rule_limit_type、rule_limit_value
         List<RuleTreeNodeLine> ruleTreeNodeLines = ruleTreeNodeLineDao.queryRuleTreeNodeLineListByTreeId(treeId);
 
         // 1. tree node line 转换Map结构
+        // Key: 起始节点的标识符（ruleNodeFrom）。
+        // Value: 从该节点出发的所有 RuleTreeNodeLineVO 对象的列表。
         Map<String, List<RuleTreeNodeLineVO>> ruleTreeNodeLineMap = new HashMap<>();
         for (RuleTreeNodeLine ruleTreeNodeLine : ruleTreeNodeLines) {
+            //遍历每个 RuleTreeNodeLine 对象，将其转换为 RuleTreeNodeLineVO 对象
             RuleTreeNodeLineVO ruleTreeNodeLineVO = RuleTreeNodeLineVO.builder()
                     .treeId(ruleTreeNodeLine.getTreeId())
                     .ruleNodeFrom(ruleTreeNodeLine.getRuleNodeFrom())
@@ -182,14 +188,23 @@ public class StrategyRepository implements IStrategyRepository {
                     .ruleLimitType(RuleLimitTypeVO.valueOf(ruleTreeNodeLine.getRuleLimitType()))
                     .ruleLimitValue(RuleLogicCheckTypeVO.valueOf(ruleTreeNodeLine.getRuleLimitValue()))
                     .build();
-
+            //computeIfAbsent()自动完成以下步骤,Map是ruleNodeFrom 为键的映射表，值为从该节点出发的连线信息列表。
+            //String key = "fruit";
+            //if (!map.containsKey(key)) {
+            //    map.put(key, new ArrayList<>());
+            //}
+            //List<String> list = map.get(key);
+            //list.add("apple");
             List<RuleTreeNodeLineVO> ruleTreeNodeLineVOList = ruleTreeNodeLineMap.computeIfAbsent(ruleTreeNodeLine.getRuleNodeFrom(), k -> new ArrayList<>());
             ruleTreeNodeLineVOList.add(ruleTreeNodeLineVO);
         }
 
         // 2. tree node 转换为Map结构
+        //Key: 节点的唯一标识符（ruleKey）
+        //Value: 封装后的节点详细信息（RuleTreeNodeVO）
         Map<String, RuleTreeNodeVO> treeNodeMap = new HashMap<>();
         for (RuleTreeNode ruleTreeNode : ruleTreeNodes) {
+            //遍历每个对象，将其转换为 VO 对象
             RuleTreeNodeVO ruleTreeNodeVO = RuleTreeNodeVO.builder()
                     .treeId(ruleTreeNode.getTreeId())
                     .ruleKey(ruleTreeNode.getRuleKey())
@@ -201,6 +216,7 @@ public class StrategyRepository implements IStrategyRepository {
         }
 
         // 3. 构建 Rule Tree
+        //包含了规则树的基本属性（treeId、treeName、treeDesc）以及根节点的标识（treeRootRuleNode)
         RuleTreeVO ruleTreeVODB = RuleTreeVO.builder()
                 .treeId(ruleTree.getTreeId())
                 .treeName(ruleTree.getTreeName())
