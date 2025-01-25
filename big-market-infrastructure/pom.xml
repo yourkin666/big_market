@@ -23,6 +23,12 @@
             <artifactId>redisson-spring-boot-starter</artifactId>
             <version>3.23.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>cn.bugstack.middleware</groupId>
+            <artifactId>db-router-spring-boot-starter</artifactId>
+            <version>1.0.2</version>
+        </dependency>
         <!-- 系统模块 -->
         <dependency>
             <groupId>cn.yourkin666</groupId>

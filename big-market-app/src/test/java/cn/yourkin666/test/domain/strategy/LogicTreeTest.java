@@ -1,4 +1,4 @@
-package cn.yourkin666.test.domain;
+package cn.yourkin666.test.domain.strategy;
 
 import cn.yourkin666.domain.strategy.model.valobj.*;
 import cn.yourkin666.domain.strategy.service.rule.tree.factory.engine.IDecisionTreeEngine;

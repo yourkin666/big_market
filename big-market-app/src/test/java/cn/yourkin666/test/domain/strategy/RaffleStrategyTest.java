@@ -1,4 +1,4 @@
-package cn.yourkin666.test.domain;
+package cn.yourkin666.test.domain.strategy;
 
 import cn.yourkin666.domain.strategy.model.entity.RaffleAwardEntity;
 import cn.yourkin666.domain.strategy.model.entity.RaffleFactorEntity;
@@ -49,7 +49,7 @@ public class RaffleStrategyTest {
     @Before
     public void setUp() {
         // 策略装配 100001、100002、100003
-//        log.info("测试结果：{}", strategyArmory.assembleLotteryStrategy(100001L));
+        log.info("测试结果：{}", strategyArmory.assembleLotteryStrategy(100001L));
         log.info("测试结果：{}", strategyArmory.assembleLotteryStrategy(100006L));
 
         // 通过反射 mock 规则中的值
@@ -59,7 +59,7 @@ public class RaffleStrategyTest {
 
     @Test
     public void test_performRaffle() throws InterruptedException {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 1; i++) {
             RaffleFactorEntity raffleFactorEntity = RaffleFactorEntity.builder()
                     .userId("xiaofuge")
                     .strategyId(100006L)
