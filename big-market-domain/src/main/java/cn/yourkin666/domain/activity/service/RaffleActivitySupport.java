@@ -22,14 +22,17 @@ public class RaffleActivitySupport {
         this.defaultActivityChainFactory = defaultActivityChainFactory;
     }
 
+    //从raffle_activity_sku表中查询返回sku、activity_id、activity_count_id、stock_count, stock_count_surplus
     public ActivitySkuEntity queryActivitySku(Long sku) {
         return activityRepository.queryActivitySku(sku);
     }
 
+    //raffle_activity表中查询返回activity_id, activity_name, activity_desc, begin_date_time, end_date_time, strategy_id, state
     public ActivityEntity queryRaffleActivityByActivityId(Long activityId) {
         return activityRepository.queryRaffleActivityByActivityId(activityId);
     }
 
+    //raffle_activity_count表中查询返回activity_count_id, total_count, day_count, month_count
     public ActivityCountEntity queryRaffleActivityCountByActivityCountId(Long activityCountId) {
         return activityRepository.queryRaffleActivityCountByActivityCountId(activityCountId);
     }
