@@ -7,6 +7,8 @@ package cn.yourkin666.domain.activity.service.armory;
  */
 public interface IActivityArmory {
 
+    boolean assembleActivitySkuByActivityId(Long activityId);
+
     boolean assembleActivitySku(Long sku);
 
 }

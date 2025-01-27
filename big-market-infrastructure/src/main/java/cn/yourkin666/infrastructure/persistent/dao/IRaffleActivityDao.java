@@ -1,7 +1,10 @@
 package cn.yourkin666.infrastructure.persistent.dao;
 
 import cn.yourkin666.infrastructure.persistent.po.RaffleActivity;
+import cn.yourkin666.infrastructure.persistent.po.RaffleActivityAccount;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.Date;
 
 /**
  * @author Fuzhengwei bugstack.cn @小傅哥
@@ -12,5 +15,9 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IRaffleActivityDao {
 
     RaffleActivity queryRaffleActivityByActivityId(Long activityId);
+
+    Long queryStrategyIdByActivityId(Long activityId);
+
+    Long queryActivityIdByStrategyId(Long strategyId);
 
 }

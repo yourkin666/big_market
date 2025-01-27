@@ -1,0 +1,16 @@
+package cn.yourkin666.domain.activity.service.quota.rule;
+
+import cn.yourkin666.domain.activity.model.entity.ActivityCountEntity;
+import cn.yourkin666.domain.activity.model.entity.ActivityEntity;
+import cn.yourkin666.domain.activity.model.entity.ActivitySkuEntity;
+
+/**
+ * @author Fuzhengwei bugstack.cn @小傅哥
+ * @description 下单规则过滤接口
+ * @create 2024-03-23 09:40
+ */
+public interface IActionChain extends IActionChainArmory {
+
+    boolean action(ActivitySkuEntity activitySkuEntity, ActivityEntity activityEntity, ActivityCountEntity activityCountEntity);
+
+}

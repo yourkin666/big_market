@@ -1,7 +1,5 @@
 package cn.yourkin666.domain.activity.service.armory;
 
-import cn.yourkin666.domain.activity.model.valobj.ActivitySkuStockKeyVO;
-
 import java.util.Date;
 
 /**
