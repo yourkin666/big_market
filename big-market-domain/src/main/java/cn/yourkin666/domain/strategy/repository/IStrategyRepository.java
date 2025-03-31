@@ -4,22 +4,24 @@ import cn.yourkin666.domain.strategy.model.entity.StrategyAwardEntity;
 import cn.yourkin666.domain.strategy.model.entity.StrategyEntity;
 import cn.yourkin666.domain.strategy.model.entity.StrategyRuleEntity;
 import cn.yourkin666.domain.strategy.model.valobj.RuleTreeVO;
+import cn.yourkin666.domain.strategy.model.valobj.RuleWeightVO;
 import cn.yourkin666.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import cn.yourkin666.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author Fuzhengwei bugstack.cn @小傅哥
  * @description 策略服务仓储接口
- * @create 2023-12-23 09:33
  */
 public interface IStrategyRepository {
 
     List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId);
 
-    void storeStrategyAwardSearchRateTable(String key, Integer rateRange, Map<Integer, Integer> strategyAwardSearchRateTable);
+    <K, V> void storeStrategyAwardSearchRateTable(String key, Integer rateRange, Map<K, V> strategyAwardSearchRateTable);
+
+    <K, V> Map<K, V> getMap(String key);
 
     Integer getStrategyAwardAssemble(String key, Integer rateKey);
 
@@ -62,6 +64,15 @@ public interface IStrategyRepository {
     Boolean subtractionAwardStock(String cacheKey);
 
     /**
+     * 缓存key，decr 方式扣减库存
+     *
+     * @param cacheKey    缓存Key
+     * @param endDateTime 活动结束时间
+     * @return 扣减结果
+     */
+    Boolean subtractionAwardStock(String cacheKey, Date endDateTime);
+
+    /**
      * 写入奖品库存消费队列
      *
      * @param strategyAwardStockKeyVO 对象值对象
@@ -72,6 +83,11 @@ public interface IStrategyRepository {
      * 获取奖品库存消费队列
      */
     StrategyAwardStockKeyVO takeQueueValue() throws InterruptedException;
+
+    /**
+     * 获取奖品库存消费队列
+     */
+    StrategyAwardStockKeyVO takeQueueValue(Long strategyId, Integer awardId) throws InterruptedException;
 
     /**
      * 更新奖品库存消耗
@@ -89,5 +105,70 @@ public interface IStrategyRepository {
      * @return 奖品信息
      */
     StrategyAwardEntity queryStrategyAwardEntity(Long strategyId, Integer awardId);
+
+    /**
+     * 查询策略ID
+     *
+     * @param activityId 活动ID
+     * @return 策略ID
+     */
+    Long queryStrategyIdByActivityId(Long activityId);
+
+    /**
+     * 查询用户抽奖次数 - 当天的；策略ID:活动ID 1:1 的配置，可以直接用 strategyId 查询。
+     *
+     * @param userId     用户ID
+     * @param strategyId 策略ID
+     * @return 用户今日参与次数
+     */
+    Integer queryTodayUserRaffleCount(String userId, Long strategyId);
+
+    /**
+     * 根据规则树ID集合查询奖品中加锁数量的配置「部分奖品需要抽奖N次解锁」
+     *
+     * @param treeIds 规则树ID值
+     * @return key 规则树，value rule_lock 加锁值
+     */
+    Map<String, Integer> queryAwardRuleLockCount(String[] treeIds);
+
+    /**
+     * 根据用户ID、策略ID，查询用户活动账户总使用量
+     *
+     * @param userId     用户ID
+     * @param strategyId 策略ID
+     * @return 使用总量
+     */
+    Integer queryActivityAccountTotalUseCount(String userId, Long strategyId);
+
+    /**
+     * 查询奖品权重配置
+     *
+     * @param strategyId 策略ID
+     * @return 权重规则
+     */
+    List<RuleWeightVO> queryAwardRuleWeight(Long strategyId);
+
+    /**
+     * 查询有效活动的奖品配置
+     *
+     * @return 奖品配置列表
+     */
+    List<StrategyAwardStockKeyVO> queryOpenActivityStrategyAwardList();
+
+    /**
+     * 存储抽奖策略对应的Bean算法
+     *
+     * @param key      策略ID
+     * @param beanName 策略对象名称
+     */
+    void cacheStrategyArmoryAlgorithm(String key, String beanName);
+
+    /**
+     * 获取存储抽奖策略对应的Bean算法
+     *
+     * @param key 策略ID
+     * @return 策略对象名称
+     */
+    String queryStrategyArmoryAlgorithmFromCache(String key);
 
 }

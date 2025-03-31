@@ -1,5 +1,7 @@
 package cn.yourkin666.domain.strategy.service.armory.algorithm.impl;
 
+import cn.yourkin666.domain.strategy.model.entity.StrategyAwardEntity;
+import cn.yourkin666.domain.strategy.service.armory.algorithm.AbstractAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

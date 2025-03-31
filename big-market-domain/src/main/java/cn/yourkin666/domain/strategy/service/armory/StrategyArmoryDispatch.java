@@ -4,6 +4,8 @@ import cn.yourkin666.domain.strategy.model.entity.StrategyAwardEntity;
 import cn.yourkin666.domain.strategy.model.entity.StrategyEntity;
 import cn.yourkin666.domain.strategy.model.entity.StrategyRuleEntity;
 import cn.yourkin666.domain.strategy.repository.IStrategyRepository;
+import cn.yourkin666.domain.strategy.service.armory.algorithm.AbstractAlgorithm;
+import cn.yourkin666.domain.strategy.service.armory.algorithm.IAlgorithm;
 import cn.yourkin666.types.common.Constants;
 import cn.yourkin666.types.enums.ResponseCode;
 import cn.yourkin666.types.exception.AppException;
